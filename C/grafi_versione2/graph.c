@@ -15,7 +15,7 @@ AdjacencyMatrix *adjacencyMatrixInit(int vertices) {
         return NULL;
     }
 
-    functionMatrix = (void***)malloc(vertices * sizeof(void **));
+    functionMatrix = (void (***)(void *))malloc(vertices * sizeof(void **));
     if (!functionMatrix) {
         free(graph);
         return NULL;
@@ -47,4 +47,16 @@ AdjacencyMatrix *adjacencyMatrixInit(int vertices) {
     graph->functionMatrix = functionMatrix;
 
     return graph;
+}
+
+void deleteAdjacencyMatrix(AdjacencyMatrix *graph) {
+    int vertices = graph->vertices;
+    void (***functionMatrix)(void *param) = graph->functionMatrix;
+    
+    for (int i=0; i<vertices; i++) {
+        free(functionMatrix[i]);
+    }
+
+    free(functionMatrix);
+    free(graph);
 }

@@ -20,7 +20,7 @@ void function4(void) {
     printf("Hi, I am function4\n");
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     AdjacencyMatrix *graph;
 
     graph = adjacencyMatrixInit(funNumber);
@@ -38,6 +38,8 @@ int main(int argc, char **argv) {
     graph->functionMatrix[1][1](NULL);
     graph->functionMatrix[0][1](NULL);
     graph->functionMatrix[1][0](NULL);
+
+    deleteAdjacencyMatrix(graph);
 
     return EXIT_SUCCESS;
 

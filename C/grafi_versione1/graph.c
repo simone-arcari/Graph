@@ -26,8 +26,8 @@ AdjacencyMatrix *AdjacencyMatrixInit(int vertices) {
         if (matrix[i] == NULL) {
             for (int j=i-1; j>0; j--) {
                 free(matrix[j]);
-                return NULL;
             }
+            return NULL;
         }
     }
 
